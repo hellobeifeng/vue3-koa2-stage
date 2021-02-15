@@ -1,0 +1,20 @@
+.DS_Store
+node_modules/
+/dist/
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+client/dist/
+server/dist/
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+# ignore all files in public/uploads/
+public/uploads/*
+# except for .gitkeep
+!.gitkeep
