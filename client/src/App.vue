@@ -1,33 +1,28 @@
 <template>
 <div>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <global-header></global-header>
+  <router-view></router-view>
 </div>
 </template>
 
 <script lang="ts">
+import GlobalHeader from '@views/layout/GlobalHeader.vue'
 import { defineComponent } from 'vue'
-import HelloWorld from '@components/HelloWorld.vue'
-// import HelloWorld from './components/HelloWorld.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld
+    GlobalHeader
   },
   mounted () {
     const name: string | number = 'string'
-    console.log('namxe', name)
+    console.log('name', name)
   }
 })
 </script>
 
 <style lang="stylus">
-#app
-  font-family Avenir, Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
-  margin-top 60px
+#app {
+  position relative
+}
 </style>

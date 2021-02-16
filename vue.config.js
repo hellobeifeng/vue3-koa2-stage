@@ -17,7 +17,9 @@ module.exports = {
   productionSourceMap: false,
   chainWebpack: config => {
     config.resolve.alias
-      .set("@components", resolve("./client/src/components"));
+      .set("@components", resolve("./client/src/components"))
+      .set("@views", resolve("./client/src/views"))
+      .set("@hooks", resolve("./client/src/hooks"))
   },
   configureWebpack: {
     plugins: [
