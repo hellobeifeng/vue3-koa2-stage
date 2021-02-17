@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Dir1View from '@views/dir1/Index.vue'
-import Dir2View from '@views/dir2/Index.vue'
+// 启用路由懒加载，将目标组件单独构建，命中路由时再下载单独文件
+const Dir1View = () => import(/* webpackChunkName: "example-dir1" */ '@views/dir1/Index.vue')
+const Dir2View = () => import(/* webpackChunkName: "example-dir2" */ '@views/dir2/Index.vue')
 
 const router = createRouter({
   history: createWebHashHistory(),
