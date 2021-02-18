@@ -31,6 +31,17 @@ app.use(users.routes(), users.allowedMethods())
 app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
 });
+function addCountry () {
+  console.log('by decorators addCountry: from china')
+} 
+class Dog {
+  @addCountry
+  bark () {
+    console.log('bark')
+  }
+}
+let tugou = new Dog()
+tugou.bark()
 
 // 监听端口
 app.listen(3000, err => {

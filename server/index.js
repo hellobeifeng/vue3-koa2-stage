@@ -1,5 +1,2 @@
-require('babel-register')
-require('babel-polyfill')
+require('@babel/register')
 require('./server.js')
-
-console.log('env: ', process.env.NODE_ENV)

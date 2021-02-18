@@ -19,7 +19,7 @@ export default defineComponent({
   },
   mounted () {
     const name: string | number = 'string'
-    console.log('name', name)
+    console.log('name', name, '1')
   }
 })
 </script>

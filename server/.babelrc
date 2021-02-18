@@ -1,8 +1,8 @@
 {
-  "presets": ["env", "stage-0"],
+  "presets": ["@babel/env"],
   "plugins": [
-    "transform-runtime",
-    "transform-decorators-legacy",
-    "transform-class-properties"
+    "@babel/plugin-transform-runtime",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose" : true }]
   ]
 }
