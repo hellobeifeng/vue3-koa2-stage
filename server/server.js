@@ -4,6 +4,9 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+const koaStatic = require('koa-static')
+const KoaMount = require('koa-mount')
+const path = require('path')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
@@ -17,15 +20,8 @@ app.use(bodyparser({
 }))
 app.use(json())
 app.use(logger())
-app.use(require('koa-static')(__dirname + '/public'))
-
-// logger
-app.use(async (ctx, next) => {
-  const start = new Date()
-  await next()
-  const ms = new Date() - start
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
-})
+app.use(koaStatic(__dirname + '/public'))
+app.use(KoaMount('/stage', koaStatic(path.join( __dirname,  '../client/dist'))))
 
 // routes
 app.use(index.routes(), index.allowedMethods())
@@ -36,4 +32,12 @@ app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
 });
 
-module.exports = app
+// 监听端口
+app.listen(3000, err => {
+  if (err) {
+      console.error('listen port error:', err)
+  } else {
+      console.info('server started at port ' + 3000)
+  }
+})
+

@@ -13,6 +13,7 @@ module.exports = {
     }
   },
   outputDir: resolve('client/dist'),
+  publicPath: process.env.NODE_ENV === 'production' ? '' : '/',
   lintOnSave: true,
   productionSourceMap: false,
   chainWebpack: config => {
