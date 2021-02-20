@@ -1,7 +1,7 @@
 const router = require('koa-router')()
 import { getUserInfo } from '../controller/user.js'
 
-router.prefix('/users')
+router.prefix('/api/users')
 
 router.get('/info', getUserInfo)
 

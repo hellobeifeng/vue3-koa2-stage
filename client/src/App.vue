@@ -1,6 +1,6 @@
 <template>
 <div>
-  <global-header></global-header>
+  <global-header :user="currentUser"></global-header>
   <global-bread-crumb></global-bread-crumb>
   <router-view></router-view>
 </div>
@@ -9,7 +9,9 @@
 <script lang="ts">
 import GlobalHeader from '@views/layout/GlobalHeader.vue'
 import GlobalBreadCrumb from '@views/layout/GlobalBreadCrumb.vue'
-import { defineComponent } from 'vue'
+import { computed, defineComponent, onMounted } from 'vue'
+import { useStore } from 'vuex'
+import { GlobalDataProps } from './store/types' // TODO 使用 alias 会造成自动提醒失败，期待 vue-cli4 改进
 
 export default defineComponent({
   name: 'App',
@@ -17,9 +19,15 @@ export default defineComponent({
     GlobalHeader,
     GlobalBreadCrumb
   },
-  mounted () {
-    const name: string | number = 'string'
-    console.log('name', name, '1')
+  setup () {
+    const store = useStore<GlobalDataProps>()
+    const currentUser = computed(() => store.state.user.userInfo) // example: computed & vuex 写法实例
+    onMounted(() => {
+      store.dispatch('fetchUserInfo', { name: 'Li_lei' })
+    })
+    return {
+      currentUser
+    }
   }
 })
 </script>

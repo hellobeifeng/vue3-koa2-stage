@@ -11,25 +11,33 @@
     >
       <el-menu-item index="/">Vue3 Stage</el-menu-item>
       <el-menu-item style="float: right">退出登陆</el-menu-item>
-      <el-menu-item style="float: right">Li Lei</el-menu-item>
+      <el-menu-item style="float: right">{{ user.name }} {{ user.age }}</el-menu-item>
     </el-menu>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, PropType } from 'vue'
 import { useStore } from 'vuex'
+import { UserInfoProps } from '../../store/types'
+
 export default defineComponent({
+  name: 'GlobalHeader',
   data () {
     return {
       activeIndex: this.$route.path
     }
   },
-  name: 'GlobalHeader',
+  props: {
+    user: {
+      type: Object as PropType<UserInfoProps>,
+      required: true
+    }
+  },
   setup () {
     const store = useStore()
-    const userName = computed(() => store.getters.getUserName)
+    const userInfo = computed(() => store.getters.getUserName) // example: getters 写法
     return {
-      userName
+      userInfo
     }
   }
 })
