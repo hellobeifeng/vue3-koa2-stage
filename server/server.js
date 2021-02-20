@@ -9,7 +9,8 @@ const KoaMount = require('koa-mount')
 const path = require('path')
 
 const index = require('./routes/index')
-const users = require('./routes/users')
+const userRoute = require('./routes/users.js')
+
 
 // error handler
 onerror(app)
@@ -25,7 +26,7 @@ app.use(KoaMount('/stage', koaStatic(path.join( __dirname,  '../client/dist'))))
 
 // routes
 app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
+app.use(userRoute.routes(), userRoute.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
