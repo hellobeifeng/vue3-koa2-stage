@@ -5,7 +5,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "dev-s": "cross-env NODE_BK_ENV=dev nodemon server/index.js",
+    "test-s": "cross-env NODE_BK_ENV=dev nodemon server/index.js",
+    "release-s": "cross-env NODE_BK_ENV=dev nodemon server/index.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
