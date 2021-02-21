@@ -1,44 +1,37 @@
-const Koa = require('koa')
-const app = new Koa()
-const json = require('koa-json')
-const onerror = require('koa-onerror')
-const bodyparser = require('koa-bodyparser')
-const logger = require('koa-logger')
-const koaStatic = require('koa-static')
-const KoaMount = require('koa-mount')
-const path = require('path')
+import Koa from 'koa'
+import R from 'ramda'
+import { join } from 'path'
+import configDefault from './config'
 
-const index = require('./routes/index')
-const userRoute = require('./routes/users.js')
+const config = configDefault.getConfig()
+const MIDDLEWARES = ['general', 'router']
+const useMiddlewares = (app) => {
+  R.map(
+    R.compose(
+      R.forEachObjIndexed(e => e(app)),
+      require,
+      name => join(__dirname, `./middlewares/${name}`)
+    )
+  )(MIDDLEWARES)
+}
 
+async function start () {
+  const app = new Koa()
+  const { port } = config
 
-// error handler
-onerror(app)
+  app.on('error', (err, ctx) => {
+    console.error('server error', err.message, ctx)
+  });
 
-// middlewares
-app.use(bodyparser({
-  enableTypes:['json', 'form', 'text']
-}))
-app.use(json())
-app.use(logger())
-app.use(koaStatic(__dirname + '/public'))
-app.use(KoaMount('/stage', koaStatic(path.join( __dirname,  '../client/dist'))))
+  await useMiddlewares(app)
 
-// routes
-app.use(index.routes(), index.allowedMethods())
-app.use(userRoute.routes(), userRoute.allowedMethods())
+  app.listen(port, err => {
+    if (err) {
+      console.error(`env: ${process.env.NODE_BK_ENV} server, listen port error`, err)
+    } else {
+      console.info(`env: ${process.env.NODE_BK_ENV} server, started at ${port}`)
+    }
+  })
+}
 
-// error-handling
-app.on('error', (err, ctx) => {
-  console.error('server error', err, ctx)
-});
-
-// 监听端口
-app.listen(3000, err => {
-  if (err) {
-      console.error('listen port error:', err)
-  } else {
-      console.info('server started at port ' + 3000)
-  }
-})
-
+start()

@@ -30,7 +30,7 @@ const store = createStore<GlobalDataProps>({
   },
   actions: {
     fetchUserInfo ({ commit }, { name }) {
-      return asyncAndCommit(`/api/users/info?name=${name}`, 'fetchUserInfo', commit)
+      return asyncAndCommit(`/stage/api/users/info?name=${name}`, 'fetchUserInfo', commit)
     }
   },
   getters: {
