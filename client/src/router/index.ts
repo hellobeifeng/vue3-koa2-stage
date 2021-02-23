@@ -1,13 +1,14 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 // 启用路由懒加载，将目标组件单独构建，命中路由时再下载单独文件
 const HomeView = () => import(/* webpackChunkName: "example-home" */ '@views/layout/Home.vue')
 const Dir1View = () => import(/* webpackChunkName: "example-dir1" */ '@views/dir1/Index.vue')
 const Dir2View = () => import(/* webpackChunkName: "example-dir2" */ '@views/dir2/Index.vue')
 const Dir2Sub1View = () => import(/* webpackChunkName: "example-dir2-sub1" */ '@views/dir2/Dir2Sub1.vue')
 const Dir2Sub2View = () => import(/* webpackChunkName: "example-dir2-sub2" */ '@views/dir2/Dir2Sub2.vue')
+const base = process.env.NODE_ENV === 'production' ? '/stage/' : '/'
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(base),
   routes: [
     {
       path: '/',

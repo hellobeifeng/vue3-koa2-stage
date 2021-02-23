@@ -5,7 +5,7 @@ import path from 'path'
 import koaStatic from 'koa-static'
 import KoaMount from 'koa-mount'
 import json from 'koa-json'
-
+import { historyApiFallback } from 'koa2-connect-history-api-fallback'
 
 export const addBodyParser = app => {
   app.use(bodyParser({
@@ -18,7 +18,9 @@ export const addLogger = app => {
 }
 
 export const addMount = app => {
-  app.use(koaStatic(path.join( __dirname,  '../public')))
+  app.use(historyApiFallback({
+    index: '/stage'
+  }))
   app.use(KoaMount('/stage', koaStatic(path.join( __dirname,  '../../client/dist'))))
 }
 

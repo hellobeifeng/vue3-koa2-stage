@@ -10,6 +10,9 @@
       :default-active="activeIndex"
     >
       <el-menu-item index="/">Vue3 Stage</el-menu-item>
+      <el-menu-item index="/dir1">dir1</el-menu-item>
+      <el-menu-item index="/dir2/sub1">sub1</el-menu-item>
+      <el-menu-item index="/dir2/sub2">sub2</el-menu-item>
       <el-menu-item style="float: right">退出登陆</el-menu-item>
       <el-menu-item style="float: right">{{ user.name }} {{ user.age }}</el-menu-item>
     </el-menu>
