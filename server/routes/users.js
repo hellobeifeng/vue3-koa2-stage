@@ -1,4 +1,4 @@
-import { getUserInfoByName } from '../service/user.js'
+import { getUserInfoByName, createUser } from '../service/user.js'
 import { SuccessModel, ErrorModel } from '../utils/formattedRes/ResModel.js'
 import { systemFailInfo } from '../utils/formattedRes/ResInfo.js'
 
@@ -25,5 +25,14 @@ export default class UserRouter {
       // { code: 'A00500', message: '系统异常' }
       ctx.body = new ErrorModel(systemFailInfo)
     }
+  }
+  @Get('/create')
+  async testCreateUserInfo (ctx, next) {
+    let obj = {
+      username: 'XiaoHong',
+      age: 18
+    }
+    let result = await createUser(obj)
+    ctx.body = new SuccessModel(result)
   }
 }

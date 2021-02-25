@@ -19,7 +19,8 @@ export const addLogger = app => {
 
 export const addMount = app => {
   app.use(historyApiFallback({
-    index: '/stage'
+    index: '/stage',
+    whiteList: ['/stage/api/']
   }))
   app.use(KoaMount('/stage', koaStatic(path.join( __dirname,  '../../client/dist'))))
 }

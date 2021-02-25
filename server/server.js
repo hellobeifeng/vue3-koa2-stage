@@ -1,10 +1,9 @@
 import Koa from 'koa'
 import R from 'ramda'
 import { join } from 'path'
-import configDefault from './config'
+import config from './config'
 
-const config = configDefault.getConfig()
-const MIDDLEWARES = ['general', 'router']
+const MIDDLEWARES = ['database', 'general', 'router']
 const useMiddlewares = (app) => {
   R.map(
     R.compose(

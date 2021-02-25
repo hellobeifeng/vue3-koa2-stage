@@ -7,8 +7,10 @@ const config = {
   release: require('./config.release')
 }
 
-exports.getConfig = function(e) {
+export const getConfig = function(e) {
   return config[e || env]
 }
 
-exports.getEnv = () => env
+export const getEnv = () => env
+
+export default getConfig(env)
