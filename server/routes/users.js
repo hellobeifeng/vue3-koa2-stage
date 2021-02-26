@@ -10,14 +10,14 @@ import {
 } from '../decorator/router'
 @Controller('/stage/api/users')
 export default class UserRouter {
-  @Get('/info')
+  @Get('/:name')
   @Log
   @Required({
-    query: ['name']
+    params: ['name']
   })
-  async getUserInfo (ctx, next) {
-    let queryName = ctx.query.name || '系统默认'
-    const userInfo = await getUserInfoByName(queryName)
+  async getUserInfoByName (ctx, next) {
+    let name = ctx.params.name || '系统默认'
+    const userInfo = await getUserInfoByName(name)
     if (userInfo) {
       // { code: 'A00200', data: {....} }
       ctx.body = new SuccessModel(userInfo)
@@ -29,10 +29,24 @@ export default class UserRouter {
   @Get('/create')
   async testCreateUserInfo (ctx, next) {
     let obj = {
-      username: 'XiaoHong',
-      age: 18
+      name: 'XiaoMing' + new Date().getTime(),
+      age: 20 + Math.floor(Math.random() * 10)
     }
     let result = await createUser(obj)
     ctx.body = new SuccessModel(result)
   }
+  // @Get('/info')
+  // async getUserInfo (ctx, next) {
+  //   const userInfo = ctx.session.user
+  //   if (userInfo) {
+  //     // { code: 'A00200', data: {....} }
+  //     ctx.body = new SuccessModel({
+  //       name: userInfo.name,
+  //       age: userInfo.age
+  //     })
+  //   } else {
+  //     // { code: 'A00500', message: '系统异常' }
+  //     ctx.body = new ErrorModel(systemFailInfo)
+  //   }
+  // }
 }

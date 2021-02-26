@@ -23,14 +23,14 @@ const store = createStore<GlobalDataProps>({
     }
   },
   mutations: {
-    fetchUserInfo (state, rowData) {
+    fetchUserInfoByName (state, rowData) {
       const data = rowData.data
       state.user.userInfo = data
     }
   },
   actions: {
-    fetchUserInfo ({ commit }, { name }) {
-      return asyncAndCommit(`/stage/api/users/info?name=${name}`, 'fetchUserInfo', commit)
+    fetchUserInfoByName ({ commit }, { name }) {
+      return asyncAndCommit(`/stage/api/users/${name}`, 'fetchUserInfoByName', commit)
     }
   },
   getters: {

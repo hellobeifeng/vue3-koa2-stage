@@ -1,10 +1,11 @@
 // 通用中间件集合
-import bodyParser from 'koa-bodyparser'
-import logger from 'koa-logger'
 import path from 'path'
+import bodyParser from 'koa-bodyparser'
+import KoaLogger from 'koa-logger'
 import koaStatic from 'koa-static'
 import KoaMount from 'koa-mount'
-import json from 'koa-json'
+import KoaJson from 'koa-json'
+import KoaSession from 'koa-session'
 import { historyApiFallback } from 'koa2-connect-history-api-fallback'
 
 export const addBodyParser = app => {
@@ -14,7 +15,7 @@ export const addBodyParser = app => {
 }
 
 export const addLogger = app => {
-  app.use(logger())
+  app.use(KoaLogger())
 }
 
 export const addMount = app => {
@@ -26,5 +27,17 @@ export const addMount = app => {
 }
 
 export const addJSON = app => {
-  app.use(json())
+  app.use(KoaJson())
+}
+
+export const addSession = app => {
+  app.keys = ['vue3-koa2-stage']
+  app.use(KoaSession({
+    key: 'koa:sess',
+    maxAge: 86400000,
+    overwrite: true,
+    httpOnly: false,
+    signed: true,
+    rolling: false
+  }, app))
 }

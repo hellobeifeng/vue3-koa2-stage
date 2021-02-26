@@ -23,7 +23,7 @@ export default defineComponent({
     const store = useStore<GlobalDataProps>()
     const currentUser = computed(() => store.state.user.userInfo) // example: computed & vuex 写法实例
     onMounted(() => {
-      store.dispatch('fetchUserInfo', { name: 'Li_lei' })
+      store.dispatch('fetchUserInfoByName', { name: 'Li_lei' })
     })
     return {
       currentUser
