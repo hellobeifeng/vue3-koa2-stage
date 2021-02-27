@@ -1,5 +1,1 @@
-export default {
-  systemFailInfo: {
-    message: '系统异常'
-  }
-}
+export const systemFailInfo = '系统异常'

@@ -38,7 +38,8 @@ export default defineComponent({
   },
   setup () {
     const store = useStore()
-    const userInfo = computed(() => store.getters.getUserName) // example: getters 写法
+    const userInfo = computed(() => store.getters.getUserInfo) // example: getters 写法
+    const username = computed(() => store.state.user.userInfo.name) // example: module/state 写法
     return {
       userInfo
     }

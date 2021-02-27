@@ -3,8 +3,10 @@ import axios, { AxiosRequestConfig } from 'axios'
 import {
   GlobalDataProps
 } from './types'
+import userModule from './modules/user'
+import commonModule from './modules/common'
 
-const asyncAndCommit = async (url: string, mutationName: string, commit: Commit, config: AxiosRequestConfig = { method: 'get' }, extraData?: any) => {
+export const asyncAndCommit = async (url: string, mutationName: string, commit: Commit, config: AxiosRequestConfig = { method: 'get' }, extraData?: any) => {
   const { data } = await axios(url, config)
   if (extraData) {
     commit(mutationName, { data, extraData })
@@ -14,29 +16,12 @@ const asyncAndCommit = async (url: string, mutationName: string, commit: Commit,
   return data
 }
 
+// vuex4 目前没办法很好的支持 modules 后的自动类型推断，期待后续改善
+// state直接放置在 store 跟级别是可以支持的
 const store = createStore<GlobalDataProps>({
-  state: {
-    user: {
-      userInfo: {
-        name: '--'
-      }
-    }
-  },
-  mutations: {
-    fetchUserInfoByName (state, rowData) {
-      const data = rowData.data
-      state.user.userInfo = data
-    }
-  },
-  actions: {
-    fetchUserInfoByName ({ commit }, { name }) {
-      return asyncAndCommit(`/stage/api/users/${name}`, 'fetchUserInfoByName', commit)
-    }
-  },
-  getters: {
-    getUserName: (state) => {
-      return state.user.userInfo
-    }
+  modules: {
+    user: userModule,
+    common: commonModule
   }
 })
 

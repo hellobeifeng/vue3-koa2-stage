@@ -1,6 +1,6 @@
 import { getUserInfoByName, createUser } from '../service/user.js'
 import { SuccessModel, ErrorModel } from '../utils/formattedRes/ResModel.js'
-import { systemFailInfo } from '../utils/formattedRes/ResInfo.js'
+import { systemFailInfo } from '../utils/formattedRes/ResInfo'
 
 import {
   Controller,

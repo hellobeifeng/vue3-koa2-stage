@@ -20,10 +20,10 @@ export class SuccessModel extends BaseModel {
 }
 
 export class ErrorModel extends BaseModel {
-  constructor  (data = {}, message = '') {
+  constructor  (message = '') {
     super({
       code: 'A00500',
-      data,
+      data: {},
       message
     })
   }
