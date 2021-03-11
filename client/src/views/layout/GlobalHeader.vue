@@ -9,10 +9,10 @@
       active-text-color="#ffd04b"
       :default-active="activeIndex"
     >
-      <el-menu-item index="/">Vue3 Stage</el-menu-item>
+      <el-menu-item index="/home">Vue3 Stage</el-menu-item>
       <el-menu-item index="/dir1">dir1</el-menu-item>
       <el-menu-item index="/dir2/sub1">sub1</el-menu-item>
-      <el-menu-item index="/dir2/sub2">sub2</el-menu-item>
+      <el-menu-item index="/dir3/sub4">sub2</el-menu-item>
       <el-menu-item style="float: right">退出登陆</el-menu-item>
       <el-menu-item style="float: right">{{ user.name }} {{ user.age }}</el-menu-item>
     </el-menu>
@@ -39,7 +39,7 @@ export default defineComponent({
   setup () {
     const store = useStore()
     const userInfo = computed(() => store.getters.getUserInfo) // example: getters 写法
-    const username = computed(() => store.state.user.userInfo.name) // example: module/state 写法
+    // const username = computed(() => store.state.user.userInfo.name) // example: module/state 写法
     return {
       userInfo
     }
