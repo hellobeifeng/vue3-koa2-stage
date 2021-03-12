@@ -1,6 +1,7 @@
 <template>
   <div class="Dir1ViewContainer">
     <span>Dir1 page</span>
+    <router-view></router-view>
   </div>
 </template>
 <script lang="ts">

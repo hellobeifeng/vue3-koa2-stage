@@ -1,48 +1,25 @@
 <template>
   <div class="headerContainer">
-    <el-menu
-      class="el-menu"
-      mode="horizontal"
-      router
-      background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b"
-      :default-active="activeIndex"
-    >
-      <el-menu-item index="/home">Vue3 Stage</el-menu-item>
-      <el-menu-item index="/dir1">dir1</el-menu-item>
-      <el-menu-item index="/dir2/sub1">sub1</el-menu-item>
-      <el-menu-item index="/dir3/sub4">sub2</el-menu-item>
-      <el-menu-item style="float: right">退出登陆</el-menu-item>
-      <el-menu-item style="float: right">{{ user.name }} {{ user.age }}</el-menu-item>
-    </el-menu>
+    <menu-bar :routes="routes"></menu-bar>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, computed, PropType } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { useStore } from 'vuex'
-import { UserInfoProps } from '../../store/types'
+import MenuBar from '@views/layout/components/menubar/Index.vue'
 
 export default defineComponent({
   name: 'GlobalHeader',
-  data () {
-    return {
-      activeIndex: this.$route.path
-    }
-  },
-  props: {
-    user: {
-      type: Object as PropType<UserInfoProps>,
-      required: true
-    }
-  },
   setup () {
     const store = useStore()
-    const userInfo = computed(() => store.getters.getUserInfo) // example: getters 写法
-    // const username = computed(() => store.state.user.userInfo.name) // example: module/state 写法
+    const routes = computed(() => store.state.common.routes)
+
     return {
-      userInfo
+      routes
     }
+  },
+  components: {
+    MenuBar
   }
 })
 </script>

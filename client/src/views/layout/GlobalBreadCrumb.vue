@@ -24,7 +24,7 @@ export default defineComponent({
       breadcrumb.value = matched.map(item => {
         return {
           path: item.path,
-          name: item.meta.desc
+          name: item.meta.title
         }
       })
     }, { immediate: true })
