@@ -28,9 +28,9 @@
 
 <script lang="ts">
 import { defineComponent, computed, PropType } from 'vue'
-import { useStore } from 'vuex'
 import { useRoute, RouteRecordRaw } from 'vue-router'
 import MenuBarItem from './MenuBarItem.vue'
+import { SSOInfoProps } from '../../../../store/types'
 
 export default defineComponent({
   name: 'MenuBarIndex',
@@ -38,14 +38,18 @@ export default defineComponent({
     routes: {
       type: Array as PropType<RouteRecordRaw[]>,
       required: true
+    },
+    user: {
+      type: Object as PropType<SSOInfoProps>,
+      required: true
     }
   },
   setup (props) {
-    const store = useStore()
+    // const store = useStore()
+    // const ssoInfo = computed(() => store.getters.getSSOInfo) // example: getters 写法
+    // const username = computed(() => store.state.user.ssoInfo.username) // example: module/state 写法
     const route = useRoute()
-
-    // const userInfo = computed(() => store.getters.getUserInfo) // example: getters 写法
-    const username = computed(() => store.state.user.userInfo.name) // example: module/state 写法
+    const username = computed(() => props.user.username)
     const activeIndex = route.path
     const visibleRoutes = computed(() => {
       return props.routes.filter(route => !route.meta.hidden)

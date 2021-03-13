@@ -13,7 +13,7 @@ export const asyncAndCommit = async (url: string, mutationName: string, commit: 
   } else {
     commit(mutationName, data)
   }
-  return data
+  return data.data
 }
 
 // vuex4 目前没办法很好的支持 modules 后的自动类型推断，期待后续改善

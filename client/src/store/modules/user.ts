@@ -1,20 +1,24 @@
 import { asyncAndCommit } from '../index'
 const user = {
   state: {
-    userInfo: {
-      name: '--',
-      age: '--'
+    ssoInfo: {
+      username: '你的名字',
+      role: [],
+      permission: {
+        api: [],
+        view: []
+      }
     }
   },
   mutations: {
     fetchUserInfoByName (state, rowData) {
       const data = rowData.data || {}
-      state.userInfo = data
+      state.ssoInfo = data
     }
   },
   getters: {
-    getUserInfo: (state) => {
-      return state.userInfo
+    getSSOInfo: (state) => {
+      return state.ssoInfo
     }
   },
   actions: {

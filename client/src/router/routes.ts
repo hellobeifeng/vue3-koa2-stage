@@ -60,21 +60,24 @@ export const asyncRouterMap = [
     name: 'dir2View',
     component: Dir2View,
     meta: {
-      title: '目录2'
+      title: '目录2',
+      role: ['product_role', 'operation_role', 'development_role']
     },
     children: [
       {
         path: 'sub1',
         component: Dir2Sub1View,
         meta: {
-          title: '子目录1'
+          title: '产品&运营',
+          role: ['product_role', 'operation_role']
         }
       },
       {
         path: 'sub2',
         component: Dir2Sub2View,
         meta: {
-          title: '子目录2'
+          title: '开发',
+          role: ['development_role']
         }
       }
     ]
@@ -84,35 +87,40 @@ export const asyncRouterMap = [
     name: 'dir3View',
     component: Dir3View,
     meta: {
-      title: '目录3'
+      title: '目录3',
+      role: ['product_role', 'operation_role', 'development_role']
     },
     children: [
       {
         path: 'sub1',
         component: Dir3Sub1View,
         meta: {
-          title: '子目录1'
+          title: '产品&运营1',
+          role: ['product_role', 'operation_role']
         }
       },
       {
         path: 'sub2',
         component: Dir3Sub2View,
         meta: {
-          title: '子目录2'
+          title: '产品&运营2',
+          role: ['product_role', 'operation_role']
         }
       },
       {
         path: 'sub3',
         component: Dir3Sub3View,
         meta: {
-          title: '子目录3'
+          title: '开发1',
+          role: ['development_role']
         }
       },
       {
         path: 'sub4',
         component: Dir3Sub4View,
         meta: {
-          title: '子目录4'
+          title: '开发2',
+          role: ['development_role']
         }
       }
     ]
@@ -129,28 +137,32 @@ export const asyncRouterMap = [
         path: 'sub1',
         component: Dir4Sub1View,
         meta: {
-          title: '子目录1'
+          title: '产品&运营1',
+          role: ['product_role', 'operation_role']
         }
       },
       {
         path: 'sub2',
         component: Dir4Sub2View,
         meta: {
-          title: '子目录2'
+          title: '产品&运营2',
+          role: ['product_role', 'operation_role']
         }
       },
       {
         path: 'sub3',
         component: Dir4Sub3View,
         meta: {
-          title: '子目录3'
+          title: '开发1',
+          role: ['development_role']
         }
       },
       {
         path: 'sub4',
         component: Dir4Sub4View,
         meta: {
-          title: '子目录4'
+          title: '开发2',
+          role: ['development_role']
         }
       }
     ]

@@ -1,6 +1,12 @@
 import { asyncRouterMap, constantRouterMap } from '../../router/routes'
+import { RouteRecordRaw } from 'vue-router'
 
-function hasPermission (roles, route) {
+/**
+ * 如果当前路由节点的 meta.role 配置，存在于给定角色列表中，则返回 true
+ * @param {Array<string>} roles - 角色列表
+ * @param {Object} route        - 路由节点
+ */
+function hasPermission (roles: Array<string>, route: RouteRecordRaw) {
   if (route.meta && route.meta.role) {
     return roles.some(role => route.meta.role.indexOf(role) >= 0)
   } else {
@@ -9,13 +15,12 @@ function hasPermission (roles, route) {
 }
 
 /**
- * Filter asynchronous routing tables by recursion
- * @param routes asyncRoutes
- * @param roles
+ * 根据用户角色列表，递归的过滤出异步路由中角色相关的路由
+ * @param {Array} routes - 需要权限的异步路由集合
+ * @param {Array} roles  - 角色列表
  */
-export function filterAsyncRoutes (routes, roles) {
-  const res = []
-
+export function filterAsyncRoutes (routes: Array<RouteRecordRaw>, roles: Array<string>) {
+  const res: Array<RouteRecordRaw> = []
   routes.forEach(route => {
     const tmp = { ...route }
     if (hasPermission(roles, tmp)) {
@@ -65,7 +70,13 @@ const common = {
   actions: {
     generateRoutes ({ commit }, roles) {
       return new Promise(function (resolve) {
-        const accessedRoutes = filterAsyncRoutes(asyncRouterMap, roles)
+        let accessedRoutes = []
+        if (roles.includes('admin_role')) {
+          accessedRoutes = asyncRouterMap || []
+        } else {
+          accessedRoutes = filterAsyncRoutes(asyncRouterMap, roles)
+        }
+        console.log('accessedRoutes', accessedRoutes)
         commit('setRouters', accessedRoutes)
         resolve(accessedRoutes)
       })
