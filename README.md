@@ -50,7 +50,7 @@
 - 访问 `localhost:3000/stage`
 
 
-#### IV. 项目提交
+### IV. 项目提交
 
 - 【前置】全局安装 `commitizen`
 - 【前置】选择适配器 `echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc`
