@@ -28,7 +28,7 @@
 
 - 【前置】全局安装 `commitizen`
 - 【前置】选择适配器 `echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc`
-- `npm run commit `
+- `npm run commit  `
 ### 生产环境
 
 - `npm run build`
