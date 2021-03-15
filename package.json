@@ -1,6 +1,6 @@
 {
   "name": "vue3-koa2-stage",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "commit": "git-cz",
