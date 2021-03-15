@@ -6,11 +6,12 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { createUniqueString } from '../../utils/index'
 
 export default defineComponent({
   name: 'Dir1Page',
   setup () {
-    console.log('dir1 steup')
+    console.log('dir1 steup', createUniqueString())
   }
 })
 </script>

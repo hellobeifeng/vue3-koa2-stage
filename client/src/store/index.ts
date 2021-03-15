@@ -1,5 +1,6 @@
 import { createStore, Commit } from 'vuex'
-import axios, { AxiosRequestConfig } from 'axios'
+import { AxiosRequestConfig } from 'axios'
+import request from '../utils/request' // TODO 为什么不能使用 .ts 作为结尾？
 import {
   GlobalDataProps
 } from './types'
@@ -7,7 +8,7 @@ import userModule from './modules/user'
 import commonModule from './modules/common'
 
 export const asyncAndCommit = async (url: string, mutationName: string, commit: Commit, config: AxiosRequestConfig = { method: 'get' }, extraData?: any) => {
-  const { data } = await axios(url, config)
+  const { data } = await request(url, config)
   if (extraData) {
     commit(mutationName, { data, extraData })
   } else {

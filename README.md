@@ -1,6 +1,6 @@
 # 前端项目脚手架
 
-> 一个基于 vue3_cli 和 nodejs_koa2 的前端项目快速启动脚手架
+> 一个基于 vue_cli4 和 nodejs_koa2 的前端项目快速启动脚手架
 
 ---
 
@@ -39,13 +39,16 @@
 ### II. 本地开发
 
 - `npm run dev-s`
+  - `保证 node 版本在 10.14 以上`
 - `npm run serve`
+  - `保证 node 版本在 12.15 以上`
 - 访问 `localhost:8080`
 
 
 ### III.生产环境
 
 - `npm run build`
+    - `保证 node 版本在 10.14 以上`
 - `npm run release`
 - 访问 `localhost:3000/stage`
 
